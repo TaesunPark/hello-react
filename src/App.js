@@ -8,6 +8,7 @@ function App(){
   let [글제목, b] = useState(['남자 코트 추천', '여자 코트 추천', '맛집 추천']);  
   let [따봉, 따봉변경] =  useState([0,0,0]);
   let [modal, 모달변경] = useState(false);
+  let [now_modal, 현재모달위치] = useState(0);
   // UI의 현재 상태를 state로 저장
   
   
@@ -38,7 +39,8 @@ function App(){
               <p>상세내용</p>
               <button onClick={
                 () => {                  
-                  모달변경(!modal);                  
+                  모달변경(!modal);
+                  현재모달위치(i);
                 }
               }>모달</button>                   
             </div>            
@@ -47,7 +49,7 @@ function App(){
       }    
 
       {
-        modal == true ? <Modal color = "yellow" 글제목 = {글제목} 첫번째헤드 = {b}></Modal> : null
+        modal == true ? <Modal color = "yellow" 글제목 = {글제목} 첫번째헤드 = {b} 현재모달 = {now_modal}></Modal> : null
       }        
   
     </div>
@@ -64,9 +66,10 @@ function App(){
 // 1. state 가져다쓸 때 문제생김
 
 function Modal(props){
-  return(    
-      <div className="modal" style={{background : props.color}}>
-        <h4>{props.글제목[0]}</h4>
+  return( 
+      
+      <div className="modal" style={{background : props.color}}>        
+        <h4>{props.글제목[props.현재모달]}</h4>
         <p>날짜</p>
         <p>상세내용</p>
         <button onClick ={
