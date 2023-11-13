@@ -6,18 +6,11 @@ function App(){
 
   let post = '강남 우동 맛집';
   let [글제목, b] = useState(['남자 코트 추천', '여자 코트 추천', '맛집 추천']);  
+  let [따봉, 따봉변경] =  useState(0);
   
-  // a는 state 보관했던 자료
-  // b는 state 변경 도와주는 함수
-  // Destructuring 문법
-
-  // state 문법을 언제 쓸지?
-  // 변수랑 state 차이점이 있음.
-  // 변수는 html에 자동으로 반영안됨
-  // state는 갑자기 변경되면 자동 재렌더링됨.
-  // Q. state 언제 써야함?
-  // A. 변동시 자동으로 html에 반영되게 만들고 싶으면 state 사용
-
+  // 1. onClick = {} 안엔 함수
+  // 2. state 변경하는법 -> 항상 state 변경 함수 쓰세요.  
+  // 숙제. 버튼 누르면 여자 코트 추천으로 바뀌는 기능 만들기
 
   return(
     // jsx 언어임
@@ -25,10 +18,11 @@ function App(){
       <div className = "black-nav">
         <h4 style = {{color:'red', fontSize: '20px'}}>{글제목[0]}</h4>  
       </div>
-
+      
       <div className="list">
-        <h4>{글제목[0]}</h4>
+        <h4>{글제목[0]} <span onClick={ () => { 따봉변경(따봉 + 1) }}>따봉</span> {따봉} </h4>        
         <p>2월 17일 발행</p>
+        <button onClick={() => {b(['여자 코트 추천', '여자 코트 추천', '맛집 추천2'])}}>클릭</button>
       </div>
 
       <div className="list">
