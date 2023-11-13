@@ -5,8 +5,8 @@ import './App.css'
 function App(){
 
   let post = '강남 우동 맛집';
-  let [글제목, b] = useState('남자 코트 추천');
-  let [logo, setLogo] = useState('ReactBlog');
+  let [글제목, b] = useState(['남자 코트 추천', '여자 코트 추천', '맛집 추천']);  
+  
   // a는 state 보관했던 자료
   // b는 state 변경 도와주는 함수
   // Destructuring 문법
@@ -23,16 +23,21 @@ function App(){
     // jsx 언어임
     <div className="App">      
       <div className = "black-nav">
-        <h4 style = {{color:'red', fontSize: '20px'}}>{logo}</h4>  
+        <h4 style = {{color:'red', fontSize: '20px'}}>{글제목[0]}</h4>  
       </div>
 
       <div className="list">
-        <h4>글제목</h4>
+        <h4>{글제목[0]}</h4>
         <p>2월 17일 발행</p>
       </div>
 
       <div className="list">
-        <h4>{글제목}</h4>
+        <h4>{글제목[1]}</h4>
+        <p>2월 17일 발행</p>
+      </div>
+
+      <div className="list">
+        <h4>{글제목[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
       
