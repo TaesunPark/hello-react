@@ -30,7 +30,7 @@ function App() {
               shoes.map((e, i) => {                
                 return (
                   <Col>                  
-                    <Item idx = {i} s_data = {data} />
+                    <Item idx = {shoes[i]} />
                   </Col>
                 );
               })
