@@ -9,6 +9,7 @@ function App(){
   let [따봉, 따봉변경] =  useState([0,0,0]);
   let [modal, 모달변경] = useState(false);
   let [now_modal, 현재모달위치] = useState(0);
+  let [입력값, 입력값변경] = useState('');
   // UI의 현재 상태를 state로 저장
   
   
@@ -42,11 +43,36 @@ function App(){
                   모달변경(!modal);
                   현재모달위치(i);
                 }
-              }>모달</button>                   
+              }>모달</button>
+              <button onClick={
+                () =>{
+                  let copy = [...글제목];
+                  copy.splice(now_modal, 1);
+                  b(copy);
+                }
+              }>삭제</button>
             </div>            
           )
         })
       }    
+
+      <div>
+        <input onChange={(e)=>{
+          입력값변경(e.target.value);
+          console.log(입력값);
+        }} />
+        <button onClick={
+          () =>{
+            let copy = [...글제목];
+            let copy2 = [...따봉];
+            copy2.push(0);
+            copy.push(입력값);
+            b(copy);
+            따봉변경(copy2);
+          }
+        }>입력</button>
+      </div>
+      
 
       {
         modal == true ? <Modal color = "yellow" 글제목 = {글제목} 첫번째헤드 = {b} 현재모달 = {now_modal}></Modal> : null
