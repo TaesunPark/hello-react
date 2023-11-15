@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import Item from '../component'
 
-function MainPageComponent({shoes,item}) {
+function MainPageComponent({ shoes, item, setShoes }) {
 
     return (
         <>
@@ -14,7 +14,7 @@ function MainPageComponent({shoes,item}) {
                         {
                             shoes.map((e, i) => {
                                 return (
-                                    <Col key = {i}>
+                                    <Col key={i}>
                                         <Item idx={shoes[i]} />
                                     </Col>
                                 );
@@ -23,6 +23,16 @@ function MainPageComponent({shoes,item}) {
                     </Row>
                 </Container>
             </div>
+            
+            <button onClick={
+                () => {
+                    let copy = [...shoes];
+                    copy.sort((a, b) => {
+                        return a.title.localeCompare(b.title);
+                    })
+                    setShoes(copy);
+                }
+            } >글 정렬</button>
         </>
     )
 }
