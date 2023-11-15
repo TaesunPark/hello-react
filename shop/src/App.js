@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 import data from './data.js'
 import Item from './component.js'
+import { Route, Routes, Link } from 'react-router-dom'
+import MainPageComponent from './component/main-page/MainPageComponent.js';
+
 
 function App() {
 
@@ -21,25 +24,18 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className="main-bg"></div>
+      <Link to = "/">홈</Link>
+      <Link to = "/detail">상세페이지</Link>    
 
-      <div>
-        <Container>
-          <Row>
-            {
-              shoes.map((e, i) => {                
-                return (
-                  <Col>                  
-                    <Item idx = {shoes[i]} />
-                  </Col>
-                );
-              })
-            }
-          </Row>
-        </Container>
-      </div>
+      <Routes>
+        <Route path='/' element={    
+          <MainPageComponent shoes = {shoes}/>      
+        } />
+        <Route path='/detail' element={<div>상세페이지임</div>} />
+      </Routes>
 
     </div>
+
   );
 }
 
