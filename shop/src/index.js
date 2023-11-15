@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
-import GloabalNavgationBar from './GlobalNavigationBar';
+import GloabalNavgationBar from './component/nav/GlobalNavigationBar.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

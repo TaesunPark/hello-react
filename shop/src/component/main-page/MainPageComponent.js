@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
-import Item from '../component.js'
-import data from '../../data.js'
+import Item from '../component'
 
 function MainPageComponent({shoes,item}) {
 
@@ -15,7 +14,7 @@ function MainPageComponent({shoes,item}) {
                         {
                             shoes.map((e, i) => {
                                 return (
-                                    <Col>
+                                    <Col key = {i}>
                                         <Item idx={shoes[i]} />
                                     </Col>
                                 );
