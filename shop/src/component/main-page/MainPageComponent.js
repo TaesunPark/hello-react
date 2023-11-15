@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
-import Item from '../../component.js'
+import Item from '../component.js'
 import data from '../../data.js'
 
-function MainPageComponent(props) {
-
-    let [shoes] = useState(data);
+function MainPageComponent({shoes,item}) {
 
     return (
         <>
