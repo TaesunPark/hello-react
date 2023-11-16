@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+import { Form } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+
 
 function DetailPageComponent(props) {
 
@@ -9,6 +12,9 @@ function DetailPageComponent(props) {
     let { id } = useParams();
     let img_dir = "https://github.com/codingapple1/codingapple1.github.io/blob/master/shop/shoes" + (Number(id) + 1);
     let [isVisible, setIsVisible] = useState(true);
+    let [isWarning, setWarning] = useState(false);
+    let [formData, setFormData] = useState(' ');
+    let [탭, 탭변경] = useState(0);
 
     let 찾은상품 = props.shoes.find(function (x) {
         return x.id == id;
@@ -21,16 +27,32 @@ function DetailPageComponent(props) {
     `
 
     // html 렌더링 후에 동작함.
+    // 만약 두번째 인자에 [count]를 작성하면 count 값이 변경될 때 실행됨.
+    // [] 빈거 하면 1번만 실행됨.
     useEffect(() => {
-        setTimeout(() => {
-            setIsVisible(false);
-        }, 2000);
+
+        console.log(2)
+
+        return () => {
+            // 코드~~~~~~
+            // 여기는 useEffect가 실행되기 전에 실행됨.
+            // 기존 코드 치우는 거 많이 사용함.
+            clearTimeout();
+            console.log(1);
+        }
     })
+
+    useEffect(() => {
+        if (isNaN(formData) == true) {
+            alert('ㄴㄴ');
+        }
+    }, [formData])
+
 
     return (
         <div className="container">
 
-            <SaleComponent isVisible = {isVisible}/>
+            <SaleComponent isVisible={isVisible} />
 
             {count}
             <button onClick={() => { setCount(count + 1) }}>버튼{count}</button>
@@ -44,8 +66,28 @@ function DetailPageComponent(props) {
                     <p>{찾은상품.price}</p>
                     <button className="btn btn-danger">주문하기</button>
                 </div>
+
+                <input onChange={((e) => {
+                    setFormData(e.target.value);
+                })} />
+
                 <YellowBtn>주문</YellowBtn>
             </div>
+
+            <Nav variant="tabs" defaultActiveKey="link1">
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{ 탭변경(0)}} eventKey="link0">버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{ 탭변경(1)}} eventKey="link1">버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={()=>{ 탭변경(2)}} eventKey="link2">버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <TabContent 탭 = {탭} 탭변경 = {탭변경}/>
+            
         </div>
     );
 }
@@ -55,8 +97,22 @@ function SaleComponent(props) {
         props.isVisible &&
         <div className="alert alert-warning">
             2초이내 구매시 할인
-        </div>    
+        </div>
     )
+}
+
+function TabContent(props){
+    console.log(props.탭);
+
+    if(props.탭 === 0){        
+        return <div>내용0</div>
+    }
+    if(props.탭 === 1){        
+        return <div>내용1</div>
+    }
+    if(props.탭 === 2){        
+        return <div>내용2</div>
+    }
 }
 
 export default DetailPageComponent;
