@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import { Form } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 
+import {Context1} from '../../App'
+
 
 function DetailPageComponent(props) {
+
+    let {재고} = useContext(Context1); // 보관함 해체해줌
 
     let [count, setCount] = useState(0);
     let { id } = useParams();
