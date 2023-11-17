@@ -6,7 +6,8 @@ import { Form } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 
 import {Context1} from '../../App'
-
+import { addData } from "../../store/shoesSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function DetailPageComponent(props) {
 
@@ -19,6 +20,9 @@ function DetailPageComponent(props) {
     let [isWarning, setWarning] = useState(false);
     let [formData, setFormData] = useState(' ');
     let [탭, 탭변경] = useState(0);
+
+    let shoes = useSelector(state => state.shoes);
+    let dispatch = useDispatch();
 
     let 찾은상품 = props.shoes.find(function (x) {
         return x.id == id;
@@ -37,7 +41,7 @@ function DetailPageComponent(props) {
 
         console.log(2)
 
-        return () => {
+        return () => {            
             // 코드~~~~~~
             // 여기는 useEffect가 실행되기 전에 실행됨.
             // 기존 코드 치우는 거 많이 사용함.
@@ -68,14 +72,17 @@ function DetailPageComponent(props) {
                     <h4 className="pt-5">{찾은상품.title}</h4>
                     <p>{찾은상품.content}</p>
                     <p>{찾은상품.price}</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button onClick={()=>{                        
+                        dispatch(addData(찾은상품));
+                        // 해당 제품 추가하기
+                        // 상품 리덕스로 관리하기                        
+                    }} className="btn btn-danger">주문하기</button>
                 </div>
 
                 <input onChange={((e) => {
                     setFormData(e.target.value);
                 })} />
-
-                <YellowBtn>주문</YellowBtn>
+                
             </div>
 
             <Nav variant="tabs" defaultActiveKey="link1">
