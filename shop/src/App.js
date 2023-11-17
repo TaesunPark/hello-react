@@ -7,6 +7,7 @@ import Item from './component/component.js'
 import { Route, Routes, Link, useNavigate, Outlet } from 'react-router-dom'
 import MainPageComponent from './component/main-page/MainPageComponent.js';
 import DetailPageComponent from './component/detail-page/DetailPageComponent.js';
+import Cart from './component/cart/Cart.js';
 
 
 export let Context1 = createContext()
@@ -36,6 +37,8 @@ function App() {
             <DetailPageComponent shoes = {shoes}/>
           </Context1.Provider>
         } />
+
+        <Route path='/cart' element = {<Cart/>} />        
 
         
         {/* <Route path='/detail/:id' element={
